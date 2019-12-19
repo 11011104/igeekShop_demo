@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<!-- id:bean的唯一标识
+		class:当前bean所处完成包名+类名
+	 -->
+	<bean id="adminService" class="com.igeek.shop.service.impl.AdminServiceImpl"></bean>
+	<bean id="adminDao" class="com.igeek.shop.dao.impl.AdminDaoMySQL"></bean>
+	<!-- <bean id="adminDao" class="com.igeek.shop.dao.impl.AdminDaoOracle"></bean> -->
+</beans>
