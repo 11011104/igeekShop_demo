@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -29,39 +28,13 @@
 				padding: 0 10px;
 			}
 		</style>
-		<script type="text/javascript">
-			function delFromCart(pid)
-			{
-				if(confirm("您确定要删除该记录吗？"))
-				{
-					//跳转到后台,删除的是哪一项
-					window.location="${pageContext.request.contextPath }/product?method=delFromCart&pid="+pid;
-				}
-				
-			}
-			
-			function clearCart()
-			{
-				if(confirm("您确定要清空购物车吗？"))
-				{
-					//跳转到后台,删除的是哪一项
-					window.location="${pageContext.request.contextPath }/product?method=clearCart";
-				}
-			}
-		</script>
 	</head>
 
 	<body>
 		<!-- 引入header.jsp -->
 		<jsp:include page="/header.jsp"></jsp:include>
-		<!-- 购物车为空   -->
-		<c:if test="${empty cart.list}">
-		<!-- 显示图片 -->
-			<img src="${pageContext.request.contextPath }/images/cart-empty.png">
-			<a href="${pageContext.request.contextPath }">返回首页</a>
-		</c:if>
-		<c:if test="${!empty cart.list}">
-			<div class="container">
+
+		<div class="container">
 			<div class="row">
 
 				<div style="margin:0 auto; margin-top:10px;width:950px;">
@@ -76,29 +49,27 @@
 								<th>小计</th>
 								<th>操作</th>
 							</tr>
-							<c:forEach items="${cart.list }" var="entry">
 							<tr class="active">
 								<td width="60" width="40%">
 									<input type="hidden" name="id" value="22">
-									<img src="${pageContext.request.contextPath }/${entry.value.product.pimage }" width="70" height="60">
+									<img src="./image/dadonggua.jpg" width="70" height="60">
 								</td>
 								<td width="30%">
-									<a target="_blank"> ${entry.value.product.pname }</a>
+									<a target="_blank"> 有机蔬菜      大冬瓜...</a>
 								</td>
 								<td width="20%">
-									￥${entry.value.product.shop_price}
+									￥298.00
 								</td>
 								<td width="10%">
-									${entry.value.buyNum }
+									<input type="text" name="quantity" value="1" maxlength="4" size="10">
 								</td>
 								<td width="15%">
-									<span class="subtotal">￥${entry.value.subTotal }</span>
+									<span class="subtotal">￥596.00</span>
 								</td>
 								<td>
-									<a href="javascript:;" onclick="delFromCart('${entry.value.product.pid }')" class="delete">删除</a>
+									<a href="javascript:;" class="delete">删除</a>
 								</td>
 							</tr>
-							</c:forEach>
 						</tbody>
 					</table>
 				</div>
@@ -108,21 +79,18 @@
 				<div style="text-align:right;">
 					<em style="color:#ff6600;">
 				登录后确认是否享有优惠&nbsp;&nbsp;
-			</em> 赠送积分: <em style="color:#ff6600;">${cart.total }</em>&nbsp; 商品金额: <strong style="color:#ff6600;">￥${cart.total }元</strong>
+			</em> 赠送积分: <em style="color:#ff6600;">596</em>&nbsp; 商品金额: <strong style="color:#ff6600;">￥596.00元</strong>
 				</div>
 				<div style="text-align:right;margin-top:10px;margin-bottom:10px;">
-					<a href="javascript:;" onclick="clearCart()" id="clear" class="clear">清空购物车</a>
-					<a href="${pageContext.request.contextPath }/product?method=submitOrder">
-						<input type="button" width="100" value="提交订单" name="submit" border="0" style="background: url('./images/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+					<a href="order_info.htm" id="clear" class="clear">清空购物车</a>
+					<a href="order_info.htm">
+						<input type="submit" width="100" value="提交订单" name="submit" border="0" style="background: url('./images/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
 						height:35px;width:100px;color:white;">
 					</a>
 				</div>
 			</div>
 
 		</div>
-		</c:if>
-
-		
 
 		<!-- 引入footer.jsp -->
 		<jsp:include page="/footer.jsp"></jsp:include>

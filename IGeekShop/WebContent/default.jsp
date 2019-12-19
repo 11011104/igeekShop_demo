@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	response.sendRedirect(request.getContextPath()+"/product?method=index");
-%>
+	<%
+		response.sendRedirect(request.getContextPath()+"/index");
+	%>
 </body>
 </html>

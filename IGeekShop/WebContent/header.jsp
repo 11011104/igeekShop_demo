@@ -4,28 +4,24 @@
 <!DOCTYPE html>
 
 <script>
-	$(function(){
-		
-		var content = "";
-		//发送ajax请求，到后台服务器获取category数据
+	 $(function(){
+		var content="";
 		$.post(
-			"${pageContext.request.contextPath}/product?method=categoryList",
+			"${pageContext.request.contextPath}/categoryList",
 			function(data){
-				//解析data,将数据绑定到页面中
-				//[{"cid":"xxx","cname":"aaa"},{},{}...]
-				
+				//[{"cid":"1","cname":"zhi"},{},{}]
 				for(var i=0;i<data.length;i++)
 				{
-					content+="<li><a href='${pageContext.request.contextPath}/product?method=productList&cid="+data[i].cid+"'>"+data[i].cname+"</a></li>";
+					content+="<li><a href='${pageContext.request.contextPath}/productListByCid?cid="+data[i].cid+"'>"+data[i].cname+"</a></li>";
 				}
-				//动态绑定到页面中
-				$("#categoryUl").html(content);
 				
+				$("#categoryUl").html(content);
 			},
 			"json"
 		);
 		
-	})
+		
+	}) 
 </script>
 
 
@@ -39,15 +35,10 @@
 	</div>
 	<div class="col-md-3" style="padding-top:20px">
 		<ol class="list-inline">
-			<c:if test="${empty user }">
-				<li><a href="login.jsp">登录</a></li>
-			</c:if>
-			<c:if test="${!empty user }">
-				<li>欢迎${user.name }  &nbsp; &nbsp;<a href="${pageContext.request.contextPath }/user?method=logout">退出</a></li>
-			</c:if>
+			<li><a href="login.jsp">登录</a></li>
 			<li><a href="register.jsp">注册</a></li>
 			<li><a href="cart.jsp">购物车</a></li>
-			<li><a href="${pageContext.request.contextPath }/product?method=myOrders">我的订单</a></li>
+			<li><a href="order_list.jsp">我的订单</a></li>
 		</ol>
 	</div>
 </div>
@@ -64,7 +55,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="${pageContext.request.contextPath }/index.jsp">首页</a>
+				<a class="navbar-brand" href="#">首页</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -74,8 +65,9 @@
 					<li><a href="#">电脑办公</a></li>
 					<li><a href="#">电脑办公</a></li> -->
 					<%-- <c:forEach items="${categoryList }" var="category">
-						<li><a href="#">${category.cname}</a></li>
+						<li><a href="#">${category.cname }</a></li>
 					</c:forEach> --%>
+					
 				</ul>
 				<form class="navbar-form navbar-right" role="search">
 					<div class="form-group">

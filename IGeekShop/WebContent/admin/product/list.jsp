@@ -27,7 +27,6 @@
 				</tr>
 				<tr>
 					<td class="ta_01" align="right">
-					<!-- 添加商品 -->
 						<button type="button" id="add" name="add" value="添加"
 							class="button_add" onclick="addProduct()">
 							&#28155;&#21152;</button>

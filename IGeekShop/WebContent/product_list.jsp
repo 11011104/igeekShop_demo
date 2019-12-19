@@ -39,29 +39,28 @@ body {
 				<li><a href="#">首页</a></li>
 			</ol>
 		</div>
-
-
+		<!-- 循环遍历所有商品信息 -->
 		<c:forEach items="${pageBean.list }" var="product">
 		<div class="col-md-2" style="height:250px;">
-			<a href="${pageContext.request.contextPath }/product?method=productInfo&pid=${product.pid}&cid=${cid}&currentPage=${pageBean.currentPage}"> <img src="${pageContext.request.contextPath }/${product.pimage}"
+			<a href="${pageContext.request.contextPath }/productInfo?pid=${product.pid}&cid=${cid}&currentPage=${pageBean.currentPage}"> <img src="${pageContext.request.contextPath }/${product.pimage}"
 				width="170" height="170" style="display: inline-block;">
 			</a>
 			<p>
-				<a href="${pageContext.request.contextPath }/product?method=productInfo&pid=${product.pid}&cid=${cid}&currentPage=${pageBean.currentPage}" style='color: green'>${product.pname }</a>
+				<a href="${pageContext.request.contextPath }/productInfo?pid=${product.pid}&cid=${cid}&currentPage=${pageBean.currentPage}" style='color: green'>${product.pname }</a>
 			</p>
 			<p>
-				<font color="#FF0000">商城价：&yen;${product.shop_price}</font>
+				<font color="#FF0000">商城价：&yen;${product.shop_price }</font>
 			</p>
 		</div>
 		</c:forEach>
+		
 
 	</div>
 
 	<!--分页 -->
 	<div style="width: 380px; margin: 0 auto; margin-top: 50px;">
 		<ul class="pagination" style="text-align: center; margin-top: 10px;">
-			
-			<!-- 判断是否是第一页 -->
+			<!-- 前一页 -->
 			<c:if test="${pageBean.currentPage==1 }">
 				<li class="disabled">
 					<a href="javascript:void(0);" aria-label="Previous">
@@ -69,25 +68,24 @@ body {
 					</a>
 				</li>
 			</c:if>
-			<!-- 上一页 -->
-			 <c:if test="${pageBean.currentPage!=1}">
+			<c:if test="${pageBean.currentPage!=1 }">
 				<li>
-					<a href="${pageContext.request.contextPath}/product?method=productList&cid=${cid}&currentPage=${pageBean.currentPage-1}" aria-label="Previous">
+					<a href="${pageContext.request.contextPath}/productListByCid?cid=${cid}&currentPage=${pageBean.currentPage-1}" aria-label="Previous">
 						<span aria-hidden="true">&laquo;</span>
 					</a>
 				</li>
-			</c:if> 
-		
+			</c:if>
+			
+			
+			<!-- 显示页数 -->
 			<c:forEach begin="1" end="${pageBean.totalPage }" var="page">
 				<c:if test="${page==pageBean.currentPage }">
 					<li class="active"><a href="javascript:void(0);">${page }</a></li>
 				</c:if>
 				<c:if test="${page!=pageBean.currentPage }">
-					<li><a href="${pageContext.request.contextPath}/product?method=productList&cid=${cid}&currentPage=${page}">${page}</a></li>
+					<li><a href="${pageContext.request.contextPath}/productListByCid?cid=${cid}&currentPage=${page}">${page }</a></li>
 				</c:if>
-				
 			</c:forEach>
-			
 			
 			<!-- 下一页 -->
 			<c:if test="${pageBean.currentPage==pageBean.totalPage }">
@@ -99,13 +97,12 @@ body {
 			</c:if>
 			<c:if test="${pageBean.currentPage!=pageBean.totalPage }">
 				<li>
-					<a href="${pageContext.request.contextPath}/product?method=productList&cid=${cid}&currentPage=${pageBean.currentPage+1}" aria-label="Next"> 
+					<a href="${pageContext.request.contextPath}/productListByCid?cid=${cid}&currentPage=${pageBean.currentPage+1}" aria-label="Next"> 
 						<span aria-hidden="true">&raquo;</span>
 					</a>
 				</li>
 			</c:if>
-			
-			
+
 		</ul>
 	</div>
 	<!-- 分页结束 -->
@@ -119,23 +116,20 @@ body {
 			<a href="">more</a>
 		</div>
 		<div style="clear: both;"></div>
-	
-		<%-- <c:forEach items="${historyList }"  var="history"> --%>
+
 		<div style="overflow: hidden;">
 
 			<ul style="list-style: none;">
-				<c:forEach items="${historyList }"  var="history">
+				<c:forEach items="${historyList }" var="history">
 				<li
 					style="width: 150px; height: 216; float: left; margin: 0 8px 0 0; padding: 0 18px 15px; text-align: center;"><img
 					src="${pageContext.request.contextPath }/${history.pimage}" width="130px" height="130px" /></li>
+				
 				</c:forEach>
 			</ul>
 
 		</div>
-		
 	</div>
-
-
 	<!-- 引入footer.jsp -->
 	<jsp:include page="/footer.jsp"></jsp:include>
 

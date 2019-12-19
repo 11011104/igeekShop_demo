@@ -23,13 +23,7 @@ body {
 }
 </style>
 </head>
-<script type="text/javascript">
-function addCart()
-{
-	var buyNum = $("#buyNum").val();
-	window.location="${pageContext.request.contextPath }/product?method=addToCart&pid=${product.pid}&buyNum=" + buyNum;	
-}
-</script>
+
 <body>
 	<!-- 引入header.jsp -->
 	<jsp:include page="/header.jsp"></jsp:include>
@@ -46,12 +40,12 @@ function addCart()
 				<div class="col-md-6">
 					<img style="opacity: 1; width: 400px; height: 350px;" title=""
 						class="medium"
-						src="${pageContext.request.contextPath }/${product.pimage }">
+						src="${pageContext.request.contextPath }/${product.pimage}">
 				</div>
 
 				<div class="col-md-6">
 					<div>
-						<strong>${product.pname }</strong>
+						<strong>${product.pname}</strong>
 					</div>
 					<div
 						style="border-bottom: 1px dotted #dddddd; width: 350px; margin: 10px 0 10px 0;">
@@ -60,7 +54,7 @@ function addCart()
 
 					<div style="margin: 10px 0 10px 0;">
 						亿家价: <strong style="color: #ef0101;">￥：${product.shop_price }元/件</strong> 参 考 价：
-						<del>￥${product.market_price}元/件</del>
+						<del>￥${product.market_price }元/件</del>
 					</div>
 
 					<div style="margin: 10px 0 10px 0;">
@@ -74,21 +68,23 @@ function addCart()
 
 						<div
 							style="border-bottom: 1px solid #faeac7; margin-top: 20px; padding-left: 10px;">
-							购买数量: <input id="buyNum" name="buyNum" value="1"
+							购买数量: <input id="quantity" name="quantity" value="1"
 								maxlength="4" size="10" type="text">
 						</div>
 
 						<div style="margin: 20px 0 10px 0;; text-align: center;">
-							<a href="javascript:void(0);" onclick="addCart()"> 
-							<input style="background: url('./images/product.gif') no-repeat scroll 0 -600px rgba(0, 0, 0, 0); height: 36px; width: 127px;"
+							<a href="cart.htm"> <input
+								style="background: url('./images/product.gif') no-repeat scroll 0 -600px rgba(0, 0, 0, 0); height: 36px; width: 127px;"
 								value="加入购物车" type="button">
 							</a> &nbsp;收藏商品
 						</div>
 					</div>
-					<!-- 返回 -->
+					
+					<!-- 返回上一页 -->
 					<div>
-						<a href="${pageContext.request.contextPath }/product?method=productList&cid=${cid }&currentPage=${currentPage}">返回商品列表</a>
+						<a href="${pageContext.request.contextPath}/productListByCid?cid=${cid }&currentPage=${currentPage}">返回商品列表</a>
 					</div>
+					
 				</div>
 			</div>
 			<div class="clear"></div>

@@ -25,13 +25,13 @@ public class JedisPoolUtils {
 		
 		//获得池子对象
 		JedisPoolConfig poolConfig = new JedisPoolConfig();
-		poolConfig.setMaxIdle(Integer.parseInt(pro.get("redis.maxIdle").toString()));//最大闲置个数
+		poolConfig.setMaxIdle(Integer.parseInt(pro.get("redis.maxIdle").toString()));///最大闲置个数
 		poolConfig.setMinIdle(Integer.parseInt(pro.get("redis.minIdle").toString()));//最小闲置个数
 		poolConfig.setMaxTotal(Integer.parseInt(pro.get("redis.maxTotal").toString()));//最大连接数
 		pool = new JedisPool(poolConfig,pro.getProperty("redis.url") , Integer.parseInt(pro.get("redis.port").toString()));
 	}
 
-	//获得jedis资源的方法
+	////获得jedis资源的方法
 	public static Jedis getJedis(){
 		return pool.getResource();
 	}

@@ -74,17 +74,17 @@
 							<img src="products/hao/middle01.jpg" width="516px" height="200px" style="display: inline-block;">
 						</a>
 					</div>
+					<c:forEach items="${hotProductList }" var="pro">
 					
+						<!-- 商品信息 -->
+						<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
+							<a href="product_info.htm">
+								<img src="${pageContext.request.contextPath }/${pro.pimage }" width="130" height="130" style="display: inline-block;">
+							</a>
+							<p><a href="product_info.html" style='color:#666'>${pro.pname }</a></p>
+							<p><font color="#E4393C" style="font-size:16px">&yen;${pro.shop_price }</font></p>
+						</div>
 					
-					<c:forEach items="${hotProductList }"  var="product">
-					<!-- 热门商品列表 -->
-					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="product_info.htm">
-							<img src="${product.pimage }" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="product_info.html" style='color:#666'>${product.pname }</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;${product.shop_price}</font></p>
-					</div>
 					</c:forEach>
 					
 				</div>
@@ -109,17 +109,19 @@
 							<img src="products/hao/middle01.jpg" width="516px" height="200px" style="display: inline-block;">
 						</a>
 					</div>
-				
-					<c:forEach items="${newProductList }" var="product">
-					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="product_info.htm">
-							<img src="${product.pimage }" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="product_info.html" style='color:#666'>${product.pname }</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;${product.shop_price }</font></p>
-					</div>
-					</c:forEach>
+					<!-- 循环遍历最新商品 -->
+					<c:forEach items="${newProductList }" var="pro">
 					
+						<!-- 最新商品 -->
+						<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
+							<a href="product_info.htm">
+								<img src="${pageContext.request.contextPath }/${pro.pimage }" width="130" height="130" style="display: inline-block;">
+							</a>
+							<p><a href="product_info.html" style='color:#666'>${pro.pname }</a></p>
+							<p><font color="#E4393C" style="font-size:16px">&yen;${pro.shop_price }</font></p>
+						</div>
+		
+					</c:forEach>
 				</div>
 			</div>			
 			
